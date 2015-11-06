@@ -1,0 +1,67 @@
+###########################################################################
+##    Copyright 2010 Rahul Suri and Tandy Warnow.
+##    This file is part of ReUP.
+##
+##    ReUP is free software: you can redistribute it and/or modify
+##    it under the terms of the GNU General Public License as published by
+##    the Free Software Foundation, either version 3 of the License, or
+##    (at your option) any later version.
+##
+##    ReUP is distributed in the hope that it will be useful,
+##    but WITHOUT ANY WARRANTY; without even the implied warranty of
+##    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+##    GNU General Public License for more details.
+##
+##    You should have received a copy of the GNU General Public License
+##    along with ReUP.  If not, see <http://www.gnu.org/licenses/>.
+###########################################################################
+
+
+Software
+
+  * This section details steps for installing and running SuperFine. We ran SuperFine on a machine running Linux release Linux version 2.6.32-34-server. If you experience difficulty installing or running the software, please contact us at the e-mail address shown on the main SuperFine page.
+  
+  SuperFine requires MRL and MRP software to run.  Details on installing the MRP and MRL methods can be found on the methods' respective pages, including OS specific binaries.  All binaries must be on the path directory for SuperFine to work. RAxML and TNT are optional methods, and are only required if you plan to run SuperFine+MRL(RAxML) or SuperFine+MRP(TNT).
+
+    
+    * Install PAUP* (REQUIRED).
+          SuperFine requires PAUP* for several critical tasks.  It is necessary to have PAUP* installed and executable via a "paup -n" system command (i.e. the PAUP* binary must be in your executable search path, settable via the PATH environment variable). We used PAUP* version 4.0b10 for Unix; other versions may or may not work with SuperFine.
+
+          For instructions on obtaining and installing PAUP*, please visit the PAUP* home page (http://paup.csit.fsu.edu/).
+          
+    * Install TNT (OPTIONAL).
+          SuperFine+MRP(TNT) requires that you first have TNT installed and executable via a "tnt" system command (i.e. the TNT binary must be in your executable search path, settable via the PATH environment variable). We used TNT version 1.1 for Unix; other versions may or may not work with SuperFine.
+
+          For instructions on obtaining and installing TNT, please visit the TNT home page (http://www.zmuc.dk/public/phylogeny/tnt/).
+          
+    * Install RAxML (OPTIONAL).
+          SuperFine+MRL(RAxML) requires that you first have RAxML installed and executable via a "raxmlHPC" system command (i.e. the RAxML binary must be in your executable search path, settable via the PATH environment variable). We used raxmlHPC version 7.2.8 for Unix; other versions may or may not work with SuperFine.  
+
+          For instructions on obtaining and installing RAxML, please visit the RAxML home page (http://www.exelixis-lab.org/).
+            
+  *  Installing python packages.
+  The software packages listed below are Python source distributions. To use them, you must first have Python installed on your system; for details on obtaining and installing Python, please visit the Python home page. We used Python version 2.6.5.
+  
+  To uncompress and inflate each distribution file, run "tar -xzf <package>.tar.gz". To install each package, run "python setup.py install" from inside the uncompressed package directory; this step requires root access to the system.
+  
+  If you do not have root access, invoke the setup script as follows: "python setup.py install --prefix=/some/path/on/your/system", where "/some/path/on/your/system" is the path to a directory on your system to which you do have read and write access. If you use the "--prefix" option, you must ensure that the "lib/python2.x/site-packages" subdirectory (where "x" denotes the minor version number of your Python install) of the directory you specify following "--prefix=" is on Python's search path. To add a directory to Python's search path, modify your PYTHONPATH environment variable.
+  
+  More instructions on installing Python packages can be found on this Python page.
+
+    * Install the newick_modified package.
+          o newick_modified-1.3.1.tar.gz
+
+    * Install the spruce package.
+          o spruce-1.0.tar.gz
+
+    * Install the dendropy package.
+          o DendroPy-3.8.1.tar.gz
+
+    * Install the reup package.
+          o reup-1.0.tar.gz
+          o Set the FASTMRP environment variable to point toward the reup-1.0/tools/ folder.  This allows SuperFine to find the mrp.jar file.
+
+    * Running SuperFine.
+          o Run the "runReup.py" script from the "bin" subdirectory of the location in which you installed the Python packages. Run the script using the command "python <path/to/runReup.py>/runReup.py -r <resolver> -o <outputfile> <source_trees_file>", where "<source_trees_file>" is the name of a file containing source trees in Newick format, <outputfile> is the output file, and <resolver> is one of 3 options: "gmrp" (MRP(PAUP*)), "tntm" (MRP(TNT)), or "rml" (MRL(RAxML)).
+          
+          The example directory found in reup-1.0/examples contains an example of running SuperFine.  For example, running the command "python ../reup/scripts/runReup.py -r rml -o test.rml test.source_trees" from the reup-1.0/examples directory will take in the source tree file called test.source_trees, run SuperFine+MRL(RAxML) on the source trees, and output the results to test.rml.
